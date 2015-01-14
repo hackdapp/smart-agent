@@ -22,6 +22,13 @@
 			<version>18.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+
+
 		<!-- Read XML file -->
 		<dependency>
 			<groupId>org.fusesource</groupId>
@@ -75,6 +82,9 @@
 					<include>META-INF/*</include>
 				</includes>
 			</resource>
+			<resource>
+				<directory>lib</directory>
+			</resource>
 		</resources>
 
 		<plugins>
@@ -87,10 +97,15 @@
 				<configuration>
 					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
+						<Bundle-Activator>com.cloudwise.smartagent.application.Activator</Bundle-Activator>
 						<Export-Package>com.cloudwise.smartagent.resource</Export-Package>
-						<Import-Package>org.osgi.service.log</Import-Package>
+						<Import-Package>org.osgi.service.log,org.osgi.framework</Import-Package>
 						<!-- add ,plugin.xml if it's present i.e. src/main/resources,plugin.xml -->
 						<Include-Resource>src/main/resources</Include-Resource>
+						
+						<Embed-Dependency>*;scope=compile|runtime;inline=false</Embed-Dependency>
+						<Embed-Directory>target/dependency</Embed-Directory>
+						<Embed-StripGroup>true</Embed-StripGroup>
 					</instructions>
 				</configuration>
 				<executions>
@@ -103,7 +118,18 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

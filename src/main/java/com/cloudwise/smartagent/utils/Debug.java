@@ -2,13 +2,13 @@ package com.cloudwise.smartagent.utils;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 
 import org.apache.log4j.Category;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
+import org.osgi.service.log.LogReaderService;
 import org.osgi.service.log.LogService;
 
 /**
@@ -92,6 +92,7 @@ public class Debug {
 		if (level >= conf_level) {
 			if (useLog4J) {
 				LogService logger = null;
+				LogReaderService a; 
 				logger.log(level, msg, t);
 				// Category logger = getLogger(module);
 				// logger.log(callingClass, levelObjs[level], msg, t);
