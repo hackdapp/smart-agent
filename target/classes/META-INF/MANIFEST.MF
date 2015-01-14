@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1421237131123
+Build-Jdk: 1.7.0_45
+Built-By: nolan
+Bundle-ManifestVersion: 2
+Bundle-Name: SmartAgent Bundle
+Bundle-SymbolicName: com.cloudwise.smart-agent
+Bundle-Version: 0.0.1.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.cloudwise.smartagent.resource;version="0.0.1.SNAPSHO
+ T"
+Import-Package: org.osgi.service.log
+Originally-Created-By: Apache Maven Bundle Plugin
+Tool: Bnd-1.50.0
