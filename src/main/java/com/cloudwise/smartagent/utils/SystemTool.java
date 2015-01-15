@@ -149,6 +149,17 @@ public class SystemTool {
 		}
 	}
 	
+	public static OSType getOSType(){
+		String os = getOSName();
+		if (os.startsWith("windows")) {
+			// 本地是windows
+			return OSType.WINDOW;
+		} else {
+			// 本地是非windows系统 一般就是unix
+			return OSType.LINUX;
+		}
+	}
+	
 	/**
 	 * 测试用的main方法.
 	 * 

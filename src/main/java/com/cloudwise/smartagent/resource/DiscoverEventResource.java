@@ -1,8 +1,11 @@
 package com.cloudwise.smartagent.resource;
 
 import java.net.InetAddress;
+import java.util.List;
 import java.util.Map;
 
+import com.cloudwise.smartagent.component.ComponentFactory;
+import com.cloudwise.smartagent.component.IDiscover;
 import com.cloudwise.smartagent.component.discover.model.BaseModel;
 import com.cloudwise.smartagent.model.ServiceReportInfo;
 import com.cloudwise.smartagent.schedule.IScheduleEvent;
@@ -16,11 +19,13 @@ public class DiscoverEventResource implements IScheduleEvent {
 	}
 
 	public void execute(Map map) {
-		// 1.discover the host's infomation.
 		String localMacAddress = SystemTool.getMACAddress();
 		ServiceReportInfo reportInfo = new ServiceReportInfo(localMacAddress);
-		// 2.discover the host's services.
-
+		// 1.discover the host's services.
+		List<IDiscover> discoverList = ComponentFactory.getInstance().getDiscoverList();
+		for(IDiscover discover:discoverList){
+			discover.doDiscover();
+		}
 	}
 
 	private void ipAndMac(BaseModel tmpReportInfo)  {

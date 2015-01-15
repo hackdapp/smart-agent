@@ -12,8 +12,6 @@ import com.google.common.collect.Maps;
 
 @JsonIgnoreProperties({ "id", "mac" })
 public class ServiceReportInfo {
-	public static final int WINDOWS = 2;
-	public static final int LINUX = 1;
 	private String hostKey;
 	private String mac;
 	private Map<String, ServiceInfo> service_items;

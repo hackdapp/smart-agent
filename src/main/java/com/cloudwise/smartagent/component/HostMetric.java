@@ -1,6 +1,6 @@
 package com.cloudwise.smartagent.component;
 
-public enum HostProperties {
+public enum HostMetric {
 	TYPE_GROUP_OS("os_group", 190), // os组
 	TYPE_HOST("base", 100), // 主机信息
 	TYPE_BURDEN("cpu_burden", 101), // CPU负载
@@ -15,7 +15,7 @@ public enum HostProperties {
 	private String key;
 	private int value;
 
-	HostProperties(String key, int value) {
+	HostMetric(String key, int value) {
 		this.key = key;
 		this.value = value;
 	}

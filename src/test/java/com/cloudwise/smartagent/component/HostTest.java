@@ -11,7 +11,7 @@ import com.cloudwise.smartagent.component.discover.model.FileSystemData;
 public class HostTest {
 
 	public static void main(String[] args) throws SigarException {
-		HostProperties test = HostProperties.TYPE_CPU_USE_RATE;
+		HostMetric test = HostMetric.TYPE_CPU_USE_RATE;
 		testHost();
 	}
 
