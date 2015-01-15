@@ -91,11 +91,8 @@ public class Debug {
 			String callingClass) {
 		if (level >= conf_level) {
 			if (useLog4J) {
-				LogService logger = null;
-				LogReaderService a; 
-				logger.log(level, msg, t);
-				// Category logger = getLogger(module);
-				// logger.log(callingClass, levelObjs[level], msg, t);
+				Category logger = getLogger(module);
+				logger.log(callingClass, levelObjs[level], msg, t);
 			} else {
 				DateFormat dateFormat = DateFormat.getDateTimeInstance(
 						DateFormat.SHORT, DateFormat.MEDIUM);

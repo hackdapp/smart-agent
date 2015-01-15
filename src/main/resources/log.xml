@@ -1,0 +1,4 @@
+<log>
+	<useLog4j>true</useLog4j>
+	<level>1</level>
+</log>
