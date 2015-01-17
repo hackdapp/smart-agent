@@ -1,10 +1,12 @@
 package com.cloudwise.smartagent.component;
 
-import java.util.Map;
+import java.util.List;
 
 import com.cloudwise.smartagent.component.discover.model.ServiceInfo;
 
+
+
 public interface IDiscover {
 	
-	public Map<String,ServiceInfo> doDiscover();
+	public List<ServiceInfo> doDiscover();
 }

@@ -3,6 +3,7 @@ package com.cloudwise.smartagent.component;
 import java.util.List;
 import java.util.Map;
 
+import com.cloudwise.smartagent.component.discover.HostDiscover;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 
@@ -26,13 +27,13 @@ public class ComponentFactory {
 	public List<IDiscover> getDiscoverList(){
 		if(discoverMap==null || discoverMap.size()==0){
 			//TODO dynamic load the bundle<IDiscover,ICollect> from bundleContext
-			
+			discoverMap.put("host", new HostDiscover());
 		}
 		return ImmutableList.copyOf(discoverMap.values());
 	}
 	
-	public IDiscover getDiscover(String discoverId){
-		return discoverMap.get(discoverId);
+	public IDiscover getDiscoverByServiceType(String serviceType){
+		return discoverMap.get(serviceType);
 	}
 	
 	public List<ICollect> getCollectList(){
@@ -42,7 +43,7 @@ public class ComponentFactory {
 		}
 		return ImmutableList.copyOf(collectMap.values());
 	}
-	public ICollect getCollect(String collectId){
-		return collectMap.get(collectId);
+	public ICollect getCollectByServiceType(String serviceType){
+		return collectMap.get(serviceType);
 	}
 }

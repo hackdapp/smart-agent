@@ -1,7 +1,6 @@
 package com.cloudwise.smartagent.component.discover;
 
 import java.util.List;
-import java.util.Map;
 
 import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.FileSystem;
@@ -20,13 +19,12 @@ import com.cloudwise.smartagent.utils.SystemTool;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
-public class HostDisCover implements IDiscover {
+public class HostDiscover implements IDiscover {
 	private static SigarProxy sigarProxy;
 
-	public Map<String, ServiceInfo> doDiscover() {
-		Map<String, ServiceInfo> serviceList = Maps.newHashMap();
+	public List<ServiceInfo> doDiscover() {
+		List<ServiceInfo> serviceList = Lists.newArrayList();
 	
 		for (HostMetric properties : HostMetric.values()) {
 			ServiceInfo baseInfo = new ServiceInfo();
@@ -49,11 +47,13 @@ public class HostDisCover implements IDiscover {
 							+ " "
 							+ OperatingSystem.getInstance().getArch());
 				}
-				baseInfo.setAttaches(new ObjectMapper().writeValueAsString(collectdata));
+				if(collectdata!=null){
+					baseInfo.setAttaches(new ObjectMapper().writeValueAsString(collectdata));
+				}
+				serviceList.add(baseInfo);
 			} catch (SigarException | JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			serviceList.put(baseInfo.getService_qualifier(), baseInfo);
 		}
 		return serviceList;
 	}

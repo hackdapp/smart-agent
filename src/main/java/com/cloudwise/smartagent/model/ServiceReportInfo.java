@@ -14,19 +14,17 @@ import com.google.common.collect.Maps;
 public class ServiceReportInfo {
 	private String hostKey;
 	private String mac;
-	private Map<String, ServiceInfo> service_items;
+	private Map<String, ServiceInfo> service_items = Maps.newHashMap();
 
-	public ServiceReportInfo(String mac){
+	public ServiceReportInfo(String mac) {
 		this.mac = mac;
 	}
+
 	public Map<String, ServiceInfo> getService_items() {
-		if (this.service_items == null) {
-			this.service_items = Maps.newHashMap();
-		}
 		return this.service_items;
 	}
 
-	public void addService(String serviceId,ServiceInfo serviceInfo) {
+	public void addService(String serviceId, ServiceInfo serviceInfo) {
 		this.service_items.put(serviceId, serviceInfo);
 	}
 
@@ -37,13 +35,10 @@ public class ServiceReportInfo {
 	public String getId() {
 		if (hostKey == null) {
 			hostKey = StringUtil.MD5(ContextHandle.getAccountId() + mac);
+			Debug.logVerbose("AcountId: " + ContextHandle.getAccountId()
+					+ " ; Mac: " + mac + "; hostKey MD5(AcountId + mac) : "
+					+ hostKey);
 		}
-		Debug.logVerbose("account is is : "
-				+ ContextHandle.getAccountId()
-				+ " ; mac is : "
-				+ mac
-				+ " ;	hostKey is StringUtil.MD5(CacheCenter.getAccountId() + mac) : "
-				+ hostKey);
 		return hostKey;
 	}
 

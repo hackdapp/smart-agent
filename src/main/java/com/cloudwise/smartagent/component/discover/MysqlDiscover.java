@@ -1,13 +1,14 @@
 package com.cloudwise.smartagent.component.discover;
 
-import java.util.Map;
+import java.util.List;
 
 import com.cloudwise.smartagent.component.IDiscover;
+import com.cloudwise.smartagent.component.discover.model.ServiceInfo;
 
 public class MysqlDiscover implements IDiscover {
 
 	@Override
-	public Map<String, Map> doDiscover() {
+	public List<ServiceInfo> doDiscover() {
 		// TODO Auto-generated method stub
 		return null;
 	}
