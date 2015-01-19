@@ -1,21 +1,16 @@
 package com.cloudwise.smartagent.component;
 
 import java.util.List;
-import java.util.Map;
 
-import com.cloudwise.smartagent.component.discover.HostDiscover;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Maps;
+import com.cloudwise.smartagent.application.ApplicationActivator;
+import com.cloudwise.smartagent.plugin.api.ICollect;
+import com.cloudwise.smartagent.plugin.api.IDiscover;
 
 public class ComponentFactory {
 	private static ComponentFactory componentFactory = null;
 
 	private ComponentFactory() {
-		//TODO dynamic load the bundle<IDiscover,ICollect> from bundleContext
 	}
-
-	private static Map<String, IDiscover> discoverMap = Maps.newConcurrentMap();
-	private static Map<String, ICollect> collectMap = Maps.newConcurrentMap();
 
 	public static ComponentFactory getInstance() {
 		if (componentFactory == null) {
@@ -23,27 +18,18 @@ public class ComponentFactory {
 		}
 		return componentFactory;
 	}
-	
-	public List<IDiscover> getDiscoverList(){
-		if(discoverMap==null || discoverMap.size()==0){
-			//TODO dynamic load the bundle<IDiscover,ICollect> from bundleContext
-			discoverMap.put("host", new HostDiscover());
-		}
-		return ImmutableList.copyOf(discoverMap.values());
+
+	public List<IDiscover> getDiscoverList() {
+		return ApplicationActivator.getAgentPlugin(IDiscover.class);
 	}
-	
-	public IDiscover getDiscoverByServiceType(String serviceType){
-		return discoverMap.get(serviceType);
+
+	public IDiscover getDiscoverByServiceType(String serviceType) {
+		return ApplicationActivator
+				.getAgentPlugin(IDiscover.class, serviceType);
 	}
-	
-	public List<ICollect> getCollectList(){
-		if(collectMap==null || collectMap.size()==0){
-			//TODO dynamic load the bundle<IDiscover,ICollect> from bundleContext
-			
-		}
-		return ImmutableList.copyOf(collectMap.values());
+
+	public ICollect getCollectByServiceType(String serviceType) {
+		return ApplicationActivator.getAgentPlugin(ICollect.class, serviceType);
 	}
-	public ICollect getCollectByServiceType(String serviceType){
-		return collectMap.get(serviceType);
-	}
+
 }

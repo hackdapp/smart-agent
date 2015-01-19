@@ -1,6 +1,5 @@
 package com.cloudwise.smartagent.utils;
 
-import org.hyperic.sigar.OperatingSystem;
 
 /**
  * @author Will
@@ -29,8 +28,6 @@ public class Consts {
     public static final int OS_TYPE_LINUX = 1;
     public static final String WINDOWS_SUFFIX = "bat";
     public static final String LINUX_SUFFIX = "sh";
-    public static final boolean OS_IS_WIN = OperatingSystem.IS_WIN32;
-    public static final String SUFFIX = OS_IS_WIN ? WINDOWS_SUFFIX : LINUX_SUFFIX;
     
     /**
      * Configs for server things, like suro.

@@ -8,8 +8,7 @@ public class DiscoverEventResourceTest {
 
 	@Test
 	public void test() {
-		DiscoverEventResource resource = new DiscoverEventResource();
-		resource.execute();
+		DiscoverEventResource resource = new DiscoverEventResource(null);
 	}
 
 }

@@ -2,12 +2,12 @@ package com.cloudwise.smartagent.model;
 
 import java.util.Map;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import com.cloudwise.smartagent.component.discover.model.ServiceInfo;
+import com.cloudwise.smartagent.plugin.api.model.ServiceInfo;
 import com.cloudwise.smartagent.utils.ContextHandle;
 import com.cloudwise.smartagent.utils.Debug;
 import com.cloudwise.smartagent.utils.StringUtil;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.Maps;
 
 @JsonIgnoreProperties({ "id", "mac" })

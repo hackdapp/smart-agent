@@ -19,7 +19,7 @@ public class HostConfigration {
 	private Map<String,ServiceItem> serviceMapItem = Maps.newHashMap();
 
 	public HostConfigration(){
-		
+		 
 	}
 	public HostConfigration(String hostKey, String targetId, String targetType,
 			Map<String,ServiceItem> serviceMapItem) {

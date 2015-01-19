@@ -4,6 +4,7 @@
 	    "target_type": 3,			
 	    "service_items": {
 	        "100": {
+	        "id":"100",
 	            "service_type": "100",
 	            "status": 1,
 	            "frequency": 60,

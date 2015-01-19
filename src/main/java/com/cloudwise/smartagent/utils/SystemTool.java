@@ -6,12 +6,6 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-/**
- * @className: SystemTool
- * @description: 与系统相关的一些常用工具方法. 目前实现的有：获取MAC地址、IP地址、主机名
- * @author: 笑遍世界
- * @createTime: 2010-11-13 下午08:03:44
- */
 public class SystemTool {
 
 	/**

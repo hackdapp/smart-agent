@@ -1,7 +1,7 @@
 package com.cloudwise.smartagent.component;
 
 public class ServiceSerialNum {
-	 public static final int TYPE_GROUP_OS = 190; //os组
+	 	public static final int TYPE_GROUP_OS = 190; //os组
 	    public static final int TYPE_HOST = 100; // 主机信息
 	    public static final int TYPE_BURDEN = 101; //CPU负载
 	    public static final int TYPE_CPU_USE_RATE = 102; //CPU使用率

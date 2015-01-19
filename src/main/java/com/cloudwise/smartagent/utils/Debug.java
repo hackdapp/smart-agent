@@ -28,7 +28,7 @@ public class Debug {
 	public static String encoding = "utf-8";
 
 	/** 系统标识 */
-	public static String appName = "platform";
+	public static String appName = "SmartAgent";
 
 	public static final int ALWAYS = 0;
 

@@ -15,8 +15,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<dep.lib>com.fasterxml.jackson.core, com.fasterxml.jackson.databind,
 			com.google.common.collect, org.codehaus.jackson.annotate,
-			org.hyperic.sigar,org.apache.commons.logging,
-			org.apache.log4j</dep.lib>
+			org.apache.commons.logging,
+			org.apache.log4j,com.fasterxml.jackson.annotation,
+			com.sun.jersey.api.client, javax.ws.rs.core</dep.lib>
 	</properties>
 
 	<dependencies>
@@ -28,10 +29,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
-			<version>2.0</version>
+			<groupId>com.cloudwise.smartagent</groupId>
+			<artifactId>agent-plugin-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<!-- <dependency> <groupId>javax.ws.rs</groupId> <artifactId>javax.ws.rs-api</artifactId> 
+			<version>2.0</version> </dependency> <dependency> <groupId>javax.ws.rs</groupId> 
+			<artifactId>jsr311-api</artifactId> <version>1.0.3</version> </dependency> -->
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -39,17 +44,6 @@
 			<version>18.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.13</version>
-		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -61,45 +55,47 @@
 			<artifactId>jersey-client</artifactId>
 			<version>1.18.1</version>
 		</dependency>
-
-
-		<!-- Read XML file -->
 		<dependency>
-			<groupId>org.fusesource</groupId>
-			<artifactId>sigar</artifactId>
-			<version>1.6.4</version>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-core</artifactId>
+			<version>1.18.1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<version>1.1.1</version>
-		</dependency>
 
-		<!-- Commons io -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.2</version>
-		</dependency>
-
+		<!-- Log -->
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
 
 		<!-- test scoped dependencies -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.9.5</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.1</version>
+			<scope>test</scope>
 		</dependency>
 
 
@@ -147,12 +143,24 @@
 				<configuration>
 					<manifestLocation>META-INF</manifestLocation>
 					<instructions>
-						<Bundle-Activator>com.cloudwise.smartagent.application.Activator</Bundle-Activator>
-						<Export-Package>com.cloudwise.smartagent.resource</Export-Package>
-						<Import-Package>${dep.lib},org.osgi.service.log;version="1.3.0",org.osgi.framework,com.cloudwise.smartagent.schedule</Import-Package>
+						<Bundle-Activator>com.cloudwise.smartagent.application.ApplicationActivator</Bundle-Activator>
+						<Export-Package></Export-Package>
+						<Import-Package>com.cloudwise.smartagent.plugin.api,
+							com.cloudwise.smartagent.plugin.api.exception,
+							com.cloudwise.smartagent.plugin.api.model,${dep.lib},org.osgi.service.log;version="1.3.0",org.osgi.framework,com.cloudwise.smartagent.schedule</Import-Package>
 						<Include-Resource>src/main/resources</Include-Resource>
 
-						<Bundle-ClassPath>.,lib/log4j-1.2.16.jar</Bundle-ClassPath>
+						<Bundle-ClassPath>.,
+							lib/commons-logging-1.1.1.jar,
+							lib/guava-18.0.jar,
+							lib/jackson-annotations-2.4.0.jar,
+							lib/jackson-core-2.4.2.jar,
+							lib/jackson-databind-2.4.2.jar,
+							lib/jersey-client-1.18.1.jar,
+							lib/jersey-core-1.18.1.jar,
+							lib/log4j-1.2.16.jar,
+							lib/xml-apis-1.3.02.jar,
+							lib/xmlParserAPIs-2.6.2.jar</Bundle-ClassPath>
 					</instructions>
 				</configuration>
 				<executions>
@@ -195,22 +203,11 @@
 	<!-- Repository Configuration -->
 	<!-- ================================================ -->
 	<repositories>
-		<repository>
-			<id>snapshots</id>
-			<name>Internal Snapshot Repository</name>
-			<url>http://repo.yunzhihui.com/repository/snapshots</url>
-		</repository>
-		<repository>
-			<id>github.release.repo</id>
-			<url>https://raw.github.com/bulldog2011/bulldog-repo/master/repo/releases/</url>
-		</repository>
-		<repository>
-			<id>repository.jboss.org</id>
-			<url>http://repository.jboss.org/maven2</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
+		<!-- <repository> <id>snapshots</id> <name>Internal Snapshot Repository</name> 
+			<url>http://repo.yunzhihui.com/repository/snapshots</url> </repository> <repository> 
+			<id>github.release.repo</id> <url>https://raw.github.com/bulldog2011/bulldog-repo/master/repo/releases/</url> 
+			</repository> <repository> <id>repository.jboss.org</id> <url>http://repository.jboss.org/maven2</url> 
+			<snapshots> <enabled>false</enabled> </snapshots> </repository> -->
 	</repositories>
 	<!-- <repositories> <repository> <id>apache.m2.incubator</id> <name>Apache 
 		M2 Incubator Repository</name> <url>http://people.apache.org/repo/m2-incubating-repository/</url> 

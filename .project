@@ -3,7 +3,6 @@
 	<name>smart-agent</name>
 	<comment></comment>
 	<projects>
-		<project>agent-schedule-api</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

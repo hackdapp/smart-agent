@@ -13,7 +13,7 @@ import com.cloudwise.smartagent.component.HostMetric;
 import com.cloudwise.smartagent.component.IDiscover;
 import com.cloudwise.smartagent.component.discover.model.BaseModel;
 import com.cloudwise.smartagent.component.discover.model.FileSystemData;
-import com.cloudwise.smartagent.component.discover.model.ServiceInfo;
+import com.cloudwise.smartagent.component.model.ServiceInfo;
 import com.cloudwise.smartagent.utils.StringUtil;
 import com.cloudwise.smartagent.utils.SystemTool;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -97,5 +97,11 @@ public class HostDiscover implements IDiscover {
 			sigarProxy = SigarProxyCache.newInstance();
 		}
 		return sigarProxy;
+	}
+
+	@Override
+	public String id() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

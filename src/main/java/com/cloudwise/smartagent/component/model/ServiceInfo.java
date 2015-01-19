@@ -1,4 +1,4 @@
-package com.cloudwise.smartagent.component.discover.model;
+package com.cloudwise.smartagent.component.model;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 

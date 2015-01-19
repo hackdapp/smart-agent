@@ -3,7 +3,7 @@ package com.cloudwise.smartagent.component.discover;
 import java.util.List;
 
 import com.cloudwise.smartagent.component.IDiscover;
-import com.cloudwise.smartagent.component.discover.model.ServiceInfo;
+import com.cloudwise.smartagent.component.model.ServiceInfo;
 
 public class MysqlDiscover implements IDiscover {
 
